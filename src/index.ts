@@ -1,6 +1,39 @@
 import * as readline from 'readline';
 
-export function fizzbuzzPart1(): void {
+function applyRules(num: number):string {
+    const words:string[] = [];
+    if(num%11===0) {
+        words.push("Bong");
+    }else for (const [number, phrase] of rules)
+    {
+        if(num%number===0)
+        {
+            words.push(phrase);
+        }
+    }
+
+    if(num%13===0)
+    {
+        const index=words.findIndex(word => word.startsWith("B"));
+        if(index===-1)
+        {
+            words.push("Fezz");
+        }
+        else
+        {
+            words.splice(index,0,"Fezz");
+        }
+    }
+    if(num%17===0)
+    {
+        words.reverse();
+    }
+
+    return (words.length ? words.join('') :num.toString());
+
+}
+
+function fizzbuzzPart1(): void {
     for (let i=1; i<=100; i++)
     {
         if(i%5===0 && i%3===0)
@@ -29,39 +62,7 @@ const rules=new Map([
 ]);
 
 function fizzbuzz2(): void {
-    for (let i=1; i<=256; i++)
-    {
-        const words:string[] = [];
-        if(i%11===0) {
-            words.push("Bong");
-        }else for (const [number, phrase] of rules)
-        {
-            if(i%number===0)
-            {
-             words.push(phrase);
-            }
-        }
-
-        if(i%13===0)
-        {
-            const index=words.findIndex(word => word.startsWith("B"));
-            if(index===-1)
-            {
-                words.push("Fezz");
-            }
-            else
-            {
-                words.splice(index,0,"Fezz");
-            }
-        }
-        if(i%17===0)
-        {
-            words.reverse();
-        }
-
-        console.log(words.length ? words.join('') :i);
-
-    }
+    for (let i=1; i<=256; i++) console.log(applyRules(i));
 }
 
 function fizzbuzzMaximumNumber(number:number): void {
@@ -123,7 +124,7 @@ function fizzbuzzChooseRule(numberArray:number[]): void {
 
 
 //fizzbuzzPart1();
-//fizzbuzz2();
+fizzbuzz2();
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -148,7 +149,7 @@ askForNumber("Enter a number: ");
 
  */
 
-function checkForAvailableRules(num:number): boolean {
+/*function checkForAvailableRules(num:number): boolean {
 
         return !(num != 3 && num !== 5 && num !== 13);
 }
@@ -178,3 +179,5 @@ function askForRules(prompt: string): void {
 }
 
 askForRules("Please choose the rules separated by comma that you want to apply (3,5,13): ");
+
+ */
