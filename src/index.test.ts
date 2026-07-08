@@ -16,3 +16,10 @@ test('fizzbuzz returns "FizzFezzBuzz" for 195', () => {
     expect(applyRules(195,[3,5,7,11,13,17])).toBe('FizzFezzBuzz');
 });
 
+test('fizzbuzz returns "FizzBuzz" for 195', () => {
+    expect(applyRules(195,[3,5,7,11,17])).toBe('FizzBuzz');
+});
+
+test('fizzbuzz returns "FizzFezz" for 39', () => {
+    expect(applyRules(39,[3,5,7,11,13,17])).toBe('FizzFezz');
+});
