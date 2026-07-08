@@ -78,9 +78,11 @@ function fizzbuzzChooseRule(numberArray:number[]): void {
 //fizzbuzz2();
 
 const rl = readline.createInterface({
-    input: process.stdin,
+   input: process.stdin,
     output: process.stdout
 });
+
+
 
 
 /*function askForNumber(prompt: string): void {
@@ -130,4 +132,4 @@ function askForRules(prompt: string): void {
     });
 }
 
-askForRules("Please choose the rules separated by comma that you want to apply (3,5,13): ");
+//askForRules("Please choose the rules separated by comma that you want to apply (3,5,13): ");
