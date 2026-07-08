@@ -24,16 +24,16 @@ In this function, I create a list of strings by following the rues in this order
 * The 17 rule, due to the fact that it reverse the words order
 In the end, if the list is empty the function returns the number itself as a string. If the list is not empty, it return the words joined together.
 
+The main function of the app is **fizzBuzz** which receives the maximum number of umbers to be genrated and the list of rules to be applied. Here we navigate through a for loop and display in the console the messages received through the applyRules function.
 
-For the first part ( only the 3 and 5 rule for numbers up to 100), I've implemented the **fizzbuzzPart1** function. Here we navigate through a for loop and display in the console the messages received through the applyRules function.
+For navigating the app, I've created a menu for :
+
+* only the 3 and 5 rule for numbers up to 100
+* all the rules for 256 numbers
+* all the rules for a number given by the user in the console
+* letting the user pass in which rules to apply for 256 numbers
 
 
-For the second part ( all the rules), I've implemented the **fizzbuzz2** function. Here we navigate through a for loop and display in the console the messages received through the applyRules function.
-
-For prompting the user for a maximum number, I ask in the console for a number, check if it is a number and then pass the argument to the **fizzbuzzMaximumNumber** function where we navigate through a for loop and display in the console the messages received through the applyRules function.
-
-
-For letting the user pass in which rules to implement, I ask in the console for a list of numbers separated by comma, split the received text, mapped it to a numeric array and check if it is one of the rules 3,5, or 13 ( ** checkForAvailableRules**. If the input is as expected, i call **fizzbuzzChooseRule** with the rules array and navigate through a for loop and display in the console the messages received through the applyRules function.
 
 
 # Tests
