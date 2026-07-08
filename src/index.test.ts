@@ -1,5 +1,5 @@
-import {fizzbuzzPart1} from './index'
+import {applyRules} from './index'
 
 test('fizzbuzz returns "Fizz" for 3', () => {
-    expect(fizzbuzzPart1(3)).toBe('Fizz');
+    expect(applyRules(3)).toBe('Fizz');
 });
