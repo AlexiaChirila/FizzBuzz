@@ -1,18 +1,24 @@
 import * as readline from 'readline';
 
-function applyRules(num: number):string {
+const rules=new Map([
+    [3,"Fizz"],
+    [5,"Buzz"],
+    [7,"Bang"],
+]);
+
+export function applyRules(num: number, applyRules:number[]):string {
     const words:string[] = [];
     if(num%11===0) {
         words.push("Bong");
     }else for (const [number, phrase] of rules)
     {
-        if(num%number===0)
+        if(applyRules.includes(number) && num%number===0)
         {
             words.push(phrase);
         }
     }
 
-    if(num%13===0)
+    if(applyRules.includes(13) && num%13===0)
     {
         const index=words.findIndex(word => word.startsWith("B"));
         if(index===-1)
@@ -55,81 +61,27 @@ function fizzbuzzPart1(): void {
     }
 }
 
-const rules=new Map([
-    [3,"Fizz"],
-    [5,"Buzz"],
-    [7,"Bang"],
-]);
-
 function fizzbuzz2(): void {
-    for (let i=1; i<=256; i++) console.log(applyRules(i));
+    for (let i=1; i<=256; i++) console.log(applyRules(i,[3,5,7,11,13,17]));
 }
 
 function fizzbuzzMaximumNumber(number:number): void {
-    for (let i = 1; i <= number; i++) {
-        const words: string[] = [];
-        if (i % 11 === 0) {
-            words.push("Bong");
-        } else for (const [number, phrase] of rules) {
-            if (i % number === 0) {
-                words.push(phrase);
-            }
-        }
-
-        if (i % 13 === 0) {
-            const index = words.findIndex(word => word.startsWith("B"));
-            if (index === -1) {
-                words.push("Fezz");
-            } else {
-                words.splice(index, 0, "Fezz");
-            }
-        }
-        if (i % 17 === 0) {
-            words.reverse();
-        }
-
-        console.log(words.length ? words.join('') : i);
-
-    }
+    for (let i = 1; i <= number; i++) console.log(applyRules(i, [3,5,7,11,13,17]));
 }
 
 function fizzbuzzChooseRule(numberArray:number[]): void {
-    for (let i = 1; i <= 256; i++)
-    {
-        const words: string[] = [];
-        if (i % 11 === 0) {
-            words.push("Bong");
-        } else for (const [number, phrase] of rules) {
-            if (numberArray.includes(number) && i % number === 0) {
-                words.push(phrase);
-            }
-        }
-
-        if (numberArray.includes(13) && i % 13 === 0) {
-            const index = words.findIndex(word => word.startsWith("B"));
-            if (index === -1) {
-                words.push("Fezz");
-            } else {
-                words.splice(index, 0, "Fezz");
-            }
-        }
-        if (i % 17 === 0) {
-            words.reverse();
-        }
-
-        console.log(words.length ? words.join('') : i);
-
-    }
+    for (let i = 1; i <= 256; i++) console.log(applyRules(i, numberArray));
 }
 
 
 //fizzbuzzPart1();
-fizzbuzz2();
+//fizzbuzz2();
 
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
 });
+
 
 /*function askForNumber(prompt: string): void {
     rl.question(prompt, (input: string) => {
@@ -149,7 +101,7 @@ askForNumber("Enter a number: ");
 
  */
 
-/*function checkForAvailableRules(num:number): boolean {
+function checkForAvailableRules(num:number): boolean {
 
         return !(num != 3 && num !== 5 && num !== 13);
 }
@@ -179,5 +131,3 @@ function askForRules(prompt: string): void {
 }
 
 askForRules("Please choose the rules separated by comma that you want to apply (3,5,13): ");
-
- */
