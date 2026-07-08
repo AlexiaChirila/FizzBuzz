@@ -43,20 +43,8 @@ export function applyRules(num: number, applyRules:number[]):string {
 
 }
 
-function fizzbuzz100(): void {
-    for (let i=1; i<=100; i++) console.log(applyRules(i,[3,5]));
-}
-
-function fizzbuzz256(): void {
-    for (let i=1; i<=256; i++) console.log(applyRules(i,[3,5,7,11,13,17]));
-}
-
-function fizzbuzzMaximumNumber(number:number): void {
-    for (let i = 1; i <= number; i++) console.log(applyRules(i, [3,5,7,11,13,17]));
-}
-
-function fizzbuzzChooseRule(numberArray:number[]): void {
-    for (let i = 1; i <= 256; i++) console.log(applyRules(i, numberArray));
+function fizzBuzz(maximumNumber:number, rulesArray:number[]): void {
+    for (let i = 1; i <= maximumNumber; i++) console.log(applyRules(i, rulesArray));
 }
 
 function askForNumber(prompt: string): void {
@@ -67,7 +55,7 @@ function askForNumber(prompt: string): void {
             console.log("Invalid input. Please enter a valid number.");
             askForNumber(prompt);
         } else {
-            fizzbuzzMaximumNumber(num);
+            fizzBuzz(num,[3,5,7,11,13,17]);
             askMenu();
         }
     });
@@ -93,7 +81,7 @@ function askForRules(prompt: string): void {
                     }
                     return num;
                 });
-            fizzbuzzChooseRule(numArray);
+            fizzBuzz(256,numArray);
         }catch (err) {
         console.error("Error:", (err as Error).message);
     } finally {
@@ -101,8 +89,6 @@ function askForRules(prompt: string): void {
     }
     });
 }
-
-
 
 function showMenu(): void {
     console.log("\n=== Main Menu ===");
@@ -116,10 +102,10 @@ function showMenu(): void {
 function handleChoice(choice: number): void {
     switch (choice) {
         case 1:
-           fizzbuzz100();
+           fizzBuzz(100,[3,5]);
             break;
         case 2:
-           fizzbuzz256();
+            fizzBuzz(256,[3,5,7,11,13,17]);
             break;
         case 3:
             askForNumber("Enter a number: ");
