@@ -1,15 +1,15 @@
 function fizzbuzzPart1(): void {
     for (let i=1; i<=100; i++)
     {
-        if(i%5==0 && i%3==0)
+        if(i%5===0 && i%3===0)
         {
             console.log("FizzBuzz");
         }
-        else if(i%5==0)
+        else if(i%5===0)
         {
             console.log("Buzz");
         }
-        else if(i%3==0)
+        else if(i%3===0)
         {
             console.log("Fizz");
         }
@@ -19,6 +19,7 @@ function fizzbuzzPart1(): void {
         }
     }
 }
+
 const rules=new Map([
     [3,"Fizz"],
     [5,"Buzz"],
@@ -28,22 +29,27 @@ const rules=new Map([
 function fizzbuzz(): void {
     for (let i=1; i<=256; i++)
     {
-        if(i%11==0)
+        const words:string[] = [];
+        if(i%11===0)
         {
-            console.log("Bong");
+            words.push("Bong");
+            if(i%13===0)
+            {
+                //add Fezz la inceput
+            }
             continue;
         }
 
-        const words:string[] = [];
+
         for (const [number, phrase] of rules)
         {
-            if(i%number==0)
+            if(i%number===0)
             {
              words.push(phrase);
             }
         }
 
-        if(i%17==0)
+        if(i%17===0)
         {
             words.reverse();
         }
