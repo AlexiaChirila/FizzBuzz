@@ -26,22 +26,13 @@ const rules=new Map([
     [7,"Bang"],
 ]);
 
-function fizzbuzz(): void {
+function fizzbuzz2(): void {
     for (let i=1; i<=256; i++)
     {
         const words:string[] = [];
-        if(i%11===0)
-        {
+        if(i%11===0) {
             words.push("Bong");
-            if(i%13===0)
-            {
-                //add Fezz la inceput
-            }
-            continue;
-        }
-
-
-        for (const [number, phrase] of rules)
+        }else for (const [number, phrase] of rules)
         {
             if(i%number===0)
             {
@@ -49,6 +40,18 @@ function fizzbuzz(): void {
             }
         }
 
+        if(i%13===0)
+        {
+            const index=words.findIndex(word => word.startsWith("B"));
+            if(index===-1)
+            {
+                words.push("Fezz");
+            }
+            else
+            {
+                words.splice(index,0,"Fezz");
+            }
+        }
         if(i%17===0)
         {
             words.reverse();
@@ -59,4 +62,4 @@ function fizzbuzz(): void {
     }
 }
 
-fizzbuzz();
+fizzbuzz2();
