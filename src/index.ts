@@ -13,12 +13,13 @@ const rl = readline.createInterface({
 
 export function applyRules(num: number, applyRules:number[]):string {
     const words:string[] = [];
-    if(num%11===0) {
+    if(applyRules.includes(11) && num%11===0) {
         words.push("Bong");
-    }else for (const [number, phrase] of rules) {
-        if(applyRules.includes(number) && num%number===0)
-        {
-            words.push(phrase);
+    } else {
+        for (const [number, phrase] of rules) {
+            if (applyRules.includes(number) && num % number === 0) {
+                words.push(phrase);
+            }
         }
     }
 
@@ -34,17 +35,20 @@ export function applyRules(num: number, applyRules:number[]):string {
             words.splice(index,0,"Fezz");
         }
     }
-    if(num%17===0)
+
+    if(applyRules.includes(17) && num%17===0)
     {
         words.reverse();
     }
 
     return (words.length ? words.join('') :num.toString());
-
 }
 
 function fizzBuzz(maximumNumber:number, rulesArray:number[]): void {
-    for (let i = 1; i <= maximumNumber; i++) console.log(applyRules(i, rulesArray));
+    for (let i = 1; i <= maximumNumber; i++)
+    {
+        console.log(applyRules(i, rulesArray));
+    }
 }
 
 function askForNumber(prompt: string): void {
@@ -63,7 +67,7 @@ function askForNumber(prompt: string): void {
 
 function checkForAvailableRules(num:number): boolean {
 
-        return !(num != 3 && num !== 5 && num !== 13);
+        return num === 3 || num === 5 || num===7 || num === 13 || num === 11 || num === 17;
 }
 
 function askForRules(prompt: string): void {
@@ -95,7 +99,7 @@ function showMenu(): void {
     console.log("1. Numbers up to 100 with only the 3 & 5 Rules");
     console.log("2. Numbers up to 256 with all the number Rules");
     console.log("3. Prompt the maximum number with all the  Rules");
-    console.log("4. Choose which rules to use between 3,5 and 13");
+    console.log("4. Choose which rules to use between 3,5,7,11,13 and 17");
     console.log("0. Exit");
 }
 
@@ -111,7 +115,7 @@ function handleChoice(choice: number): void {
             askForNumber("Enter a number: ");
             break;
         case 4:
-            askForRules("Please choose the rules separated by comma that you want to apply (3,5,13): ");
+            askForRules("Please choose the rules separated by comma that you want to apply (3,5,7,11,13,17): ");
             break;
         case 0:
             rl.close();
@@ -133,6 +137,5 @@ function askMenu(): void {
         handleChoice(choice);
     });
 }
-
 
 askMenu();
